@@ -11,7 +11,6 @@ import { editStudent, getStudentById } from "../../services/Api.js";
 const validationSchema = Yup.object({
   fullName: Yup.string().required("Vui lòng nhập họ và tên"),
   email: Yup.string().email("Email không hợp lệ").required("Vui lòng nhập email"),
-  password: Yup.string().required("Vui lòng nhập mật khẩu"),
   currentClassLevel: Yup.string().required("Vui lòng chọn lớp học"),
   gender: Yup.string().required("Vui lòng chọn giới tính"),
   bornAt: Yup.string().required("Vui lòng chọn nơi sinh"),
@@ -27,7 +26,6 @@ function EditStudent() {
   const initialValues = {
     fullName: dataStudent.fullName || "",
     email: dataStudent.email || "",
-    password: dataStudent.password || "",
     currentClassLevel: dataStudent.currentClassLevel || "",
     gender: dataStudent.gender || "",
     bornAt: dataStudent.bornAt || "",
