@@ -28,6 +28,7 @@ function EditTeacher() {
   const [dataTeacher, setDataTeacher] = useState({});
   const [alert, setAlert] = useState({});
   const navigate = useNavigate();
+
   const initialValues = {
     fullName: dataTeacher.fullName || "",
     gender: dataTeacher.gender || "",

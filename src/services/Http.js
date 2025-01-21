@@ -1,6 +1,6 @@
 import axios from "axios";
 const Http = axios.create({
-  baseURL: "https://be-school-manager.onrender.com/api/v1",
+  baseURL: process.env.REACT_APP_API_BASE_URL,
   headers: { "Content-Type": "multipart/form-data" },
 });
 export default Http;

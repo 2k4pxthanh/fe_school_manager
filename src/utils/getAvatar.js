@@ -1,7 +1,7 @@
 function getAvatar(imageName) {
   const encodedImageName = imageName?.replace(/ /g, "%20");
 
-  return `http://localhost:5000/api/v1/image/${encodedImageName}`;
+  return `${process.env.REACT_APP_API_BASE_URL}/image/${encodedImageName}`;
 }
 
 export default getAvatar;
