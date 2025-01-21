@@ -20,7 +20,7 @@ export const editClass = (data, id) => Http.post(`/class/edit/${id}`, data);
 export const deleteClassById = (id) => Http.delete(`/class/delete/${id}`);
 // STUDENT
 export const getAllStudents = (config) => Http.get("/students", config);
-export const getStudentById = (id) => Http.get(`/student/${id}`);
+export const getStudentById = (id) => Http.get(`/students/${id}`);
 export const createStudent = (data) => Http.post("/student/create", data);
 export const editStudent = (data, id) => Http.post(`/student/edit/${id}`, data);
 export const deleteStudentById = (id) => Http.delete(`/student/delete/${id}`);
