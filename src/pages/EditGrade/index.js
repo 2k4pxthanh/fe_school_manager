@@ -12,7 +12,7 @@ function EditGrade() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [dataGrade, setDataGrade] = useState({});
-  const [alert, setAlert] = useState({});
+  const [alert, setAlert] = useState({ type: "", title: "" });
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Vui lòng nhập tên khối"),

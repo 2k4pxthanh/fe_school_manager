@@ -24,7 +24,7 @@ const validationSchema = Yup.object({
 
 function CreateTeacher() {
   const [image, setImage] = useState(null);
-  const [alert, setAlert] = useState({});
+  const [alert, setAlert] = useState({ type: "", title: "" });
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();

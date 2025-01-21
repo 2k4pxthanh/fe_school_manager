@@ -18,7 +18,7 @@ function Students() {
   const [gender, setGender] = useState("");
   const [bornAt, setBornAt] = useState("");
   const [currentClassLevel, setLevelOfClass] = useState("");
-  const [alert, setAlert] = useState({});
+  const [alert, setAlert] = useState({ type: "", title: "" });
 
   const fullNameParam = searchParams.get("fullName");
   const genderParam = searchParams.get("gender");

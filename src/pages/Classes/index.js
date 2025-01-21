@@ -16,7 +16,7 @@ function Classes() {
   const [name, setName] = useState("");
   const [mainTeacher, setMainTeacher] = useState("");
   const [grade, setGrade] = useState("");
-  const [alert, setAlert] = useState({});
+  const [alert, setAlert] = useState({ type: "", title: "" });
 
   const classNameParam = searchParams.get("name");
   const teacherIdParam = searchParams.get("mainTeacher");

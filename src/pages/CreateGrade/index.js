@@ -9,7 +9,7 @@ import Alert from "../../components/Alert";
 import { createGrade } from "../../services/Api";
 
 function CreateGrade() {
-  const [alert, setAlert] = useState({});
+  const [alert, setAlert] = useState({ type: "", title: "" });
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Vui lòng nhập tên khối"),

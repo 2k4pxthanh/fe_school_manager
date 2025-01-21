@@ -9,12 +9,12 @@ function Alert({ data, title }) {
           <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zm1-12a1 1 0 0 0-2 0v3a1 1 0 0 0 2 0V4zm0 6a1 1 0 0 0-2 0v2a1 1 0 0 0 2 0v-2z" />
         </symbol>
       </svg>
-      <div className={`alert alert-${data || "success"} align-items-center`} id="alert" role="alert">
+      <div className={`alert alert-${data} align-items-center`} id="alert" role="alert">
         <div className="d-flex">
           <svg className="bi flex-shrink-0 me-2" width={24} height={24} role="img" aria-label="Success:">
             <use xlinkHref={data === "success" ? "#check-circle-fill" : "#info-circle-fill"} />
           </svg>
-          <div className="ml-1">{title || "Sửa lớp thành công"}</div>
+          <div className="ml-1">{title}</div>
         </div>
       </div>
     </div>
