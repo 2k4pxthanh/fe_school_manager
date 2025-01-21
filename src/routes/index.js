@@ -15,8 +15,13 @@ import EditGrade from "../pages/EditGrade";
 import NotFound404 from "../pages/NotFound404";
 
 const publicRoutes = [
-  { path: "/", component: Dashboard },
+  { path: "/", component: Login, layout: null },
   { path: "/login", component: Login, layout: null },
+
+  { path: "*", component: NotFound404, layout: null },
+];
+
+const privateRoutes = [
   { path: "/dashboard", component: Dashboard },
   { path: "/students", component: Students },
   { path: "/students/create", component: CreateStudent },
@@ -30,8 +35,6 @@ const publicRoutes = [
   { path: "/grades", component: Grades },
   { path: "/grades/create", component: CreateGrade },
   { path: "/grades/edit/:id", component: EditGrade },
-
-  { path: "*", component: NotFound404, layout: null },
 ];
 
-export { publicRoutes };
+export { publicRoutes, privateRoutes };

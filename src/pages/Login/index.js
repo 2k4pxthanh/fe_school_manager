@@ -1,7 +1,27 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import images from "../../assets/images";
+import { checkAdmin } from "../../services/Api";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setStatusLogin } from "../../redux/reducers/AuthReducer";
 
 function Login() {
+  const [formData, setFormData] = useState({});
+  const [checkLogin, setCheckLogin] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogin = (e, data) => {
+    e.preventDefault();
+
+    checkAdmin(data)
+      .then((dataRes) => {
+        const { status, data } = dataRes.data;
+        dispatch(setStatusLogin({ status, data }));
+        navigate("/dashboard");
+      })
+      .catch((err) => setCheckLogin(true));
+  };
   return (
     <div className="container">
       {/* Outer Row */}
@@ -22,11 +42,15 @@ function Login() {
                     <form className="user">
                       <div className="form-group">
                         <input
-                          type="email"
+                          type="text"
                           className="form-control form-control-user"
                           id="exampleInputEmail"
                           aria-describedby="emailHelp"
-                          placeholder="Nhập Email..."
+                          placeholder="Nhập tên tài khoản..."
+                          onChange={(e) => {
+                            setFormData({ ...formData, username: e.target.value });
+                          }}
+                          value={formData.username || ""}
                         />
                       </div>
                       <div className="form-group">
@@ -35,8 +59,13 @@ function Login() {
                           className="form-control form-control-user"
                           id="exampleInputPassword"
                           placeholder="Nhập mật khẩu..."
+                          onChange={(e) => {
+                            setFormData({ ...formData, password: e.target.value });
+                          }}
+                          value={formData.password || ""}
                         />
                       </div>
+                      {checkLogin && <h6 className="login-failed"> Sai tài khoản hoặc mật khẩu</h6>}
                       <div className="form-group">
                         <div className="custom-control custom-checkbox small">
                           <input type="checkbox" className="custom-control-input" id="customCheck" />
@@ -45,10 +74,10 @@ function Login() {
                           </label>
                         </div>
                       </div>
-                      <Link to={"/dashboard"} className="btn btn-primary btn-user btn-block">
+                      <button onClick={(e) => handleLogin(e, formData)} className="btn btn-primary btn-user btn-block">
                         {" "}
                         Đăng nhập{" "}
-                      </Link>
+                      </button>
                       <hr />
                       <Link to={"/dashboard"} className="btn btn-google btn-user btn-block">
                         <i className="fab fa-google fa-fw" /> Đăng nhập với tài khoản Google

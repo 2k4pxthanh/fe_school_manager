@@ -1,4 +1,6 @@
 import Http from "./Http";
+
+export const checkAdmin = (data) => Http.post("/admin/check", data);
 export const getAvatarByName = (name) => Http.get(`/image/${name}`);
 // TEACHER
 export const getAllTeachers = (config) => Http.get("/teachers", config);
