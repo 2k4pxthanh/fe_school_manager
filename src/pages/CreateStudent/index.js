@@ -19,7 +19,7 @@ const validationSchema = Yup.object({
 });
 
 function CreateStudent() {
-  const [alert, setAlert] = useState({ type: "", title: "" });
+  const [alert, setAlert] = useState({ type: "success", title: "thành công" });
 
   return (
     <>

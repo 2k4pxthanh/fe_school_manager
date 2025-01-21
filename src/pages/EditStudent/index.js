@@ -21,7 +21,7 @@ const validationSchema = Yup.object({
 function EditStudent() {
   const { id } = useParams();
   const [dataStudent, setDataStudent] = useState({});
-  const [alert, setAlert] = useState({ type: "", title: "" });
+  const [alert, setAlert] = useState({ type: "success", title: "thành công" });
   const navigate = useNavigate();
 
   const initialValues = {

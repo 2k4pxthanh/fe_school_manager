@@ -13,7 +13,7 @@ function Grades() {
   const [searchParams] = useSearchParams();
   const [grades, setGrades] = useState([]);
   const [gradeName, setGradeName] = useState("");
-  const [alert, setAlert] = useState({ type: "", title: "" });
+  const [alert, setAlert] = useState({ type: "success", title: "thành công" });
 
   const gradeNameParam = searchParams.get("name");
   const pageParam = searchParams.get("page") || 1;

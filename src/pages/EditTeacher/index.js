@@ -26,7 +26,7 @@ function EditTeacher() {
   const { id } = useParams();
   const [image, setImage] = useState(null);
   const [dataTeacher, setDataTeacher] = useState({});
-  const [alert, setAlert] = useState({ type: "", title: "" });
+  const [alert, setAlert] = useState({ type: "success", title: "thành công" });
   const navigate = useNavigate();
 
   const initialValues = {

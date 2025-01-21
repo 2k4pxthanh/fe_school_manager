@@ -18,7 +18,7 @@ function Teachers() {
   const [subject, setSubject] = useState("");
   const [gender, setGender] = useState("");
   const [address, setAddress] = useState("");
-  const [alert, setAlert] = useState({ type: "", title: "" });
+  const [alert, setAlert] = useState({ type: "success", title: "thành công" });
 
   const fullNameParam = searchParams.get("fullName");
   const subjectParam = searchParams.get("subject");

@@ -12,7 +12,7 @@ function EditClass() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [dataClass, setDataClass] = useState({});
-  const [alert, setAlert] = useState({ type: "", title: "" });
+  const [alert, setAlert] = useState({ type: "success", title: "thành công" });
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Vui lòng nhập tên lớp học"),
