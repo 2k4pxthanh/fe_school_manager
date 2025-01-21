@@ -70,7 +70,7 @@ function CreateStudent() {
                 });
             }}
           >
-            {({ isSubmitting }) => (
+            {({ isSubmitting, setFieldValue }) => (
               <Form className="form row" id="formCreateStudent">
                 <div className="col-12 form-group">
                   <label className="text-white">
@@ -95,6 +95,7 @@ function CreateStudent() {
                     className="z_search-input form-control"
                     placeholder="Chọn giới tính"
                     data={["Nam", "Nữ"]}
+                    onChange={(e) => setFieldValue("gender", $(e.target).val())}
                   />
                   <ErrorMessage name="gender" component="span" className="form-message text-warning" />
                 </div>
@@ -147,6 +148,7 @@ function CreateStudent() {
                     id="currentClassLevel"
                     placeholder="Chọn lớp học"
                     data={"/classes"}
+                    onChange={(e) => setFieldValue("currentClassLevel", $(e.target).val())}
                   />
                   <ErrorMessage name="currentClassLevel" component="span" className="form-message text-warning" />
                 </div>
@@ -160,6 +162,7 @@ function CreateStudent() {
                     id="bornAt"
                     placeholder="Chọn nơi sinh"
                     data={"https://open.oapi.vn/location/provinces?size=63"}
+                    onChange={(e) => setFieldValue("bornAt", $(e.target).val())}
                   />
                   <ErrorMessage name="bornAt" component="span" className="form-message text-warning" />
                 </div>
