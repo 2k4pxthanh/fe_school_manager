@@ -1,3 +1,5 @@
+import $ from "jquery";
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import images from "../../assets/images";
 import { checkAdmin } from "../../services/Api";
@@ -8,6 +10,7 @@ import { setStatusLogin } from "../../redux/reducers/AuthReducer";
 function Login() {
   const [formData, setFormData] = useState({});
   const [checkLogin, setCheckLogin] = useState(false);
+  const [errText, setErrText] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -17,11 +20,36 @@ function Login() {
     checkAdmin(data)
       .then((dataRes) => {
         const { status, data } = dataRes.data;
+
         dispatch(setStatusLogin({ status, data }));
         navigate("/dashboard");
       })
-      .catch((err) => setCheckLogin(true));
+      .catch((err) => {
+        const messageErr = err.response.data.message;
+        if (messageErr === "Username and password are required.") {
+          setErrText("Vui lòng điền đủ tài khoản và mật khẩu !");
+        } else if (messageErr === "Admin not found.") {
+          setErrText("Sai tên tài khoản, vui lòng nhập lại !");
+        } else if (messageErr === "Incorrect password.") {
+          setErrText("Sai mật khẩu, vui lòng nhập lại !");
+        }
+        setCheckLogin(true);
+      });
   };
+
+  const handleFocus = () => {
+    setCheckLogin(false);
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setCheckLogin(false);
+  };
+
+  useEffect(() => {
+    $("#logoutModal").modal("hide");
+  }, []);
+
   return (
     <div className="container">
       {/* Outer Row */}
@@ -47,9 +75,9 @@ function Login() {
                           id="exampleInputEmail"
                           aria-describedby="emailHelp"
                           placeholder="Nhập tên tài khoản..."
-                          onChange={(e) => {
-                            setFormData({ ...formData, username: e.target.value });
-                          }}
+                          onChange={handleChange}
+                          onFocus={handleFocus}
+                          name="username"
                           value={formData.username || ""}
                         />
                       </div>
@@ -59,13 +87,13 @@ function Login() {
                           className="form-control form-control-user"
                           id="exampleInputPassword"
                           placeholder="Nhập mật khẩu..."
-                          onChange={(e) => {
-                            setFormData({ ...formData, password: e.target.value });
-                          }}
+                          onChange={handleChange}
+                          onFocus={handleFocus}
+                          name="password"
                           value={formData.password || ""}
                         />
                       </div>
-                      {checkLogin && <h6 className="login-failed"> Sai tài khoản hoặc mật khẩu</h6>}
+                      {checkLogin && <h6 className="login-failed"> {errText}</h6>}
                       <div className="form-group">
                         <div className="custom-control custom-checkbox small">
                           <input type="checkbox" className="custom-control-input" id="customCheck" />
@@ -75,8 +103,7 @@ function Login() {
                         </div>
                       </div>
                       <button onClick={(e) => handleLogin(e, formData)} className="btn btn-primary btn-user btn-block">
-                        {" "}
-                        Đăng nhập{" "}
+                        Đăng nhập
                       </button>
                       <hr />
                       <Link to={"/dashboard"} className="btn btn-google btn-user btn-block">

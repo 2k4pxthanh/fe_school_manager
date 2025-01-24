@@ -43,6 +43,7 @@ function Students() {
     getAllStudents({
       params: {
         limit: 10,
+        sort: -1,
         page: pageParam,
         fullName: fullNameParam,
         currentClassLevel: currentClassLevelParam,

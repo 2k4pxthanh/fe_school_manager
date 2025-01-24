@@ -1,8 +1,18 @@
+import $ from "jquery";
+import { Link, Navigate } from "react-router-dom";
 import BtnScroll from "../../components/BtnScroll";
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import { useDispatch } from "react-redux";
+import { delStatusLogin } from "../../redux/reducers/AuthReducer";
 
 function DefaultLayout({ children }) {
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    $("#logoutModal").modal("hide");
+    dispatch(delStatusLogin());
+  };
+
   return (
     <div>
       {/* Page Wrapper */}
@@ -44,7 +54,7 @@ function DefaultLayout({ children }) {
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog" role="document">
+        <div className="modal-dialog" id="#modal" role="document">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">
@@ -59,9 +69,9 @@ function DefaultLayout({ children }) {
               <button className="btn btn-secondary" type="button" data-dismiss="modal">
                 Hủy
               </button>
-              <a className="btn btn-primary" href="login.html">
+              <Link className="btn btn-primary" to={"/login"} onClick={handleLogout}>
                 Đăng xuất
-              </a>
+              </Link>
             </div>
           </div>
         </div>

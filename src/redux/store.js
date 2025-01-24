@@ -7,7 +7,7 @@ import AuthReducer from "./reducers/AuthReducer";
 const persistConfig = {
   key: "pschool",
   storage,
-  // whitelist: ["cart", "auth"], // Đảm bảo chỉ lưu trữ reducer cần thiết
+  // whitelist: [ "auth"], // Đảm bảo chỉ lưu trữ reducer cần thiết
 };
 
 const persistAuthReducer = persistReducer(persistConfig, AuthReducer);

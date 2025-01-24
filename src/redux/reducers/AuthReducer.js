@@ -12,8 +12,12 @@ const AuthReducer = createSlice({
       state.status = status;
       state.data = data;
     },
+    delStatusLogin: (state, action) => {
+      state.status = null;
+      state.data = null;
+    },
   },
 });
 
-export const { setStatusLogin } = AuthReducer.actions;
+export const { setStatusLogin, delStatusLogin } = AuthReducer.actions;
 export default AuthReducer.reducer;

@@ -33,7 +33,7 @@ function Navbar() {
             Hoạt động
           </a>
           <div className="dropdown-divider" />
-          <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+          <a className="dropdown-item cursor-pointer" data-toggle="modal" data-target="#logoutModal">
             <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400" />
             Đăng xuất
           </a>

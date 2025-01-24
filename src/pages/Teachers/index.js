@@ -43,6 +43,7 @@ function Teachers() {
     getAllTeachers({
       params: {
         limit: 10,
+        sort: -1,
         page: pageParam,
         fullName: fullNameParam,
         subject: subjectParam,
@@ -86,7 +87,6 @@ function Teachers() {
           }, 500);
         })
         .catch((error) => {
-          console.error("Error deleting teacher:", error);
           $("#delModel").modal("hide");
         });
     }

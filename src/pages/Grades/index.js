@@ -7,15 +7,18 @@ import Alert from "../../components/Alert";
 import Pagination from "../../components/Pagination";
 import handleListUpperCase from "../../utils/handleListUpperCase";
 import { deleteGradeById, getAllGrades } from "../../services/Api";
+import Select2Component from "../../components/Select2";
 
 function Grades() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [grades, setGrades] = useState([]);
   const [gradeName, setGradeName] = useState("");
+  const [classId, setClassId] = useState("");
   const [alert, setAlert] = useState({ type: "success", title: "thành công" });
 
   const gradeNameParam = searchParams.get("name");
+  const classIdParam = searchParams.get("classId");
   const pageParam = searchParams.get("page") || 1;
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,14 +28,16 @@ function Grades() {
   useEffect(() => {
     fetchGrades();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, gradeNameParam, pageParam]);
+  }, [currentPage, gradeNameParam, pageParam, classIdParam]);
 
   const fetchGrades = () => {
     getAllGrades({
       params: {
         limit: 10,
+        sort: -1,
         page: pageParam,
         name: gradeNameParam,
+        classId: classIdParam,
       },
     })
       .then(({ data }) => {
@@ -43,7 +48,7 @@ function Grades() {
   };
 
   const navigateSearch = () => {
-    navigate(`/grades?name=${gradeName}`);
+    navigate(`/grades?name=${gradeName}&classId=${classId}`);
   };
 
   const handleSearch = (e) => {
@@ -87,7 +92,7 @@ function Grades() {
         {/* Page Heading */}
         <div className="d-flex justify-content-between flex-column flex-md-row">
           <div>
-            <h1 className="h3 m-0 text-gray-800 d-flex">Danh sách lớp học</h1>
+            <h1 className="h3 m-0 text-gray-800 d-flex">Danh sách khối</h1>
             <p className="mb-4">
               Khối <span>/</span>
               <span className="z_cl-primary"> Danh sách</span>
@@ -113,6 +118,18 @@ function Grades() {
                 value={gradeName || ""}
                 onChange={(e) => setGradeName(e.target.value)}
                 type="text"
+              />
+            </div>
+            <div className="col-lg-3 col-md-6 col-sm-12 form-group">
+              <Select2Component
+                id="class"
+                name="class"
+                className="z_search-input form-control"
+                placeholder="Chọn lớp học"
+                allOptions="Tất cả lớp học"
+                data={"/classes"}
+                value={classId || ""}
+                onChange={(e) => setClassId(e.target.value)}
               />
             </div>
             <div className="col-lg-3 col-md-6 col-sm-12 form-group">

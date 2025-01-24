@@ -36,6 +36,7 @@ function Classes() {
     getAllClasses({
       params: {
         limit: 10,
+        sort: -1,
         page: pageParam,
         name: classNameParam,
         mainTeacher: teacherIdParam,

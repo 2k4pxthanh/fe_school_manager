@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function Sidebar() {
   const location = useLocation();
@@ -9,24 +9,42 @@ function Sidebar() {
     setActiveLink(location.pathname);
   }, [location.pathname]);
 
+  // const navLink = document.querySelectorAll(".collapse");
+  // const navItem = document.querySelectorAll(".collapse-item");
   const handleLinkClick = (path) => {
+    // Lắng nghe sự kiện click trên từng navItem
+    // navItem.forEach((item) => {
+    //   // Kiểm tra xem navLink có lớp 'active' hay không
+    //   navLink.forEach((link) => {
+    //     if (link.classList.contains("show")) {
+    //       link.classList.remove("show");
+    //     }
+    //   });
+
+    //   // Thêm lớp active vào link đang được click
+    // });
+    // const navLink = document.querySelectorAll("a.nav-link.z_nav-item");
+    // const navItem = document.querySelectorAll(".collapse");
+
+    // console.log(navLink, navItem);
+
     setActiveLink(path);
   };
 
   return (
     <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion z_nav-wrapper" id="accordionSidebar">
       {/* Sidebar - Brand */}
-      <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <Link className="sidebar-brand d-flex align-items-center justify-content-center" to={"/dashboard"}>
         <div className="sidebar-brand-icon rotate-n-15">
           <i className="fas fa-laugh-wink" />
         </div>
         <div className="sidebar-brand-text mx-3">Manager S</div>
-      </a>
+      </Link>
       {/* Divider */}
       <hr className="sidebar-divider my-0" />
       {/* Nav Item - Dashboard */}
       <li className={`nav-item ${activeLink === "/dashboard" ? "active" : ""}`}>
-        <Link className="nav-link" to="/dashboard" onClick={() => handleLinkClick("/dashboard")}>
+        <Link className="nav-link z_nav-item" to="/dashboard" onClick={() => handleLinkClick("/dashboard")}>
           <i className="fas fa-fw fa-tachometer-alt" />
           <span>Dashboard</span>
         </Link>

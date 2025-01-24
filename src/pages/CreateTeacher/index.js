@@ -74,7 +74,20 @@ function CreateTeacher() {
             }}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting, resetForm }) => {
-              createTeacher(values)
+              const formData = new FormData();
+
+              formData.append("fullName", values.fullName);
+              formData.append("gender", values.gender);
+              formData.append("address", values.address);
+              formData.append("status", values.status);
+              formData.append("phoneNumber", values.phoneNumber);
+              formData.append("avatar", values.avatar);
+              formData.append("email", values.email);
+              formData.append("subject", values.subject);
+              formData.append("birthday", values.birthday);
+              formData.append("password", values.password);
+
+              createTeacher(formData)
                 .then(({ data }) => {
                   setAlert({ ...alert, type: "success", title: "Thêm giáo viên thành công" });
                   setImage(null);
@@ -149,6 +162,8 @@ function CreateTeacher() {
                       name="avatar"
                       onChange={(e) => {
                         handleImageChange(e);
+                        console.log(e.target.files[0]);
+
                         setFieldValue("avatar", e.target.files[0]);
                       }}
                     />

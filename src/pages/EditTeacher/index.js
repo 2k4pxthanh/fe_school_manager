@@ -90,13 +90,26 @@ function EditTeacher() {
             validationSchema={validationSchema}
             enableReinitialize
             onSubmit={(values, { setSubmitting, resetForm }) => {
-              editTeacher(values, id)
+              const formData = new FormData();
+
+              formData.append("fullName", values.fullName);
+              formData.append("gender", values.gender);
+              formData.append("address", values.address);
+              formData.append("status", values.status);
+              formData.append("phoneNumber", values.phoneNumber);
+              formData.append("avatar", values.avatar); // Đảm bảo đây là file
+              formData.append("email", values.email);
+              formData.append("subject", values.subject);
+              formData.append("birthday", values.birthday);
+
+              editTeacher(formData, id)
                 .then(({ data }) => {
                   setAlert({ ...alert, type: "success", title: "Sửa giáo viên thành công" });
                 })
                 .catch((err) => {
                   setAlert({ ...alert, type: "danger", title: "Email giáo viên đã tồn tại" });
                 });
+
               setSubmitting(false);
               $("#alert").css("display", "block");
               setTimeout(() => {
@@ -163,7 +176,6 @@ function EditTeacher() {
                       name="avatar"
                       onChange={(e) => {
                         handleImageChange(e);
-                        console.log(e.target.files);
                         setFieldValue("avatar", e.target.files[0]);
                       }}
                     />
