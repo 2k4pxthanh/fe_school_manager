@@ -9,25 +9,7 @@ function Sidebar() {
     setActiveLink(location.pathname);
   }, [location.pathname]);
 
-  // const navLink = document.querySelectorAll(".collapse");
-  // const navItem = document.querySelectorAll(".collapse-item");
   const handleLinkClick = (path) => {
-    // Lắng nghe sự kiện click trên từng navItem
-    // navItem.forEach((item) => {
-    //   // Kiểm tra xem navLink có lớp 'active' hay không
-    //   navLink.forEach((link) => {
-    //     if (link.classList.contains("show")) {
-    //       link.classList.remove("show");
-    //     }
-    //   });
-
-    //   // Thêm lớp active vào link đang được click
-    // });
-    // const navLink = document.querySelectorAll("a.nav-link.z_nav-item");
-    // const navItem = document.querySelectorAll(".collapse");
-
-    // console.log(navLink, navItem);
-
     setActiveLink(path);
   };
 

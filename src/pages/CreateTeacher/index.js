@@ -162,8 +162,6 @@ function CreateTeacher() {
                       name="avatar"
                       onChange={(e) => {
                         handleImageChange(e);
-                        console.log(e.target.files[0]);
-
                         setFieldValue("avatar", e.target.files[0]);
                       }}
                     />
